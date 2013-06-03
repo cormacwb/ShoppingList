@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Shopping List</string>
+    <string name="no_notes">No Notes Yet</string>
+    <string name="menu_insert">Add Note</string>
+    <string name="menu_delete">Delete Note</string>
+    <string name="title">Title</string>
+    <string name="body">Body</string>
+    <string name="confirm">Confirm</string>
+    <string name="edit_note">Edit Note</string>
+    <string name="new_item">New Item</string>
+    <string name="new_item_dialog">New Item Name</string>
+    <string name="list_request_code">List Request Code</string>
+    <string name="list_request_code_summary">The code that prompts the sending of the list</string>
+    <string name="list_request_code_category">List Request Code</string>
+    <string name="settings">Settings</string>
+</resources>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.android.shoppinglist">
+    <uses-sdk android:minSdkVersion="10"/>
+    <application android:icon="@drawable/icon">
+        <activity android:name="com.android.shoppinglist.ShoppingList" android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name="com.android.shoppinglist.NoteEdit" />
+        <activity
+            android:name="com.android.shoppinglist.Settings" />
+        <receiver android:name="com.android.shoppinglist.SMSListener">
+	    <intent-filter android:priority="1000"> 
+	        <action android:name="android.provider.Telephony.SMS_RECEIVED"/> 
+	    </intent-filter> 
+</receiver>
+        
+    </application>
+    <uses-permission android:name="android.permission.RECEIVE_SMS"/>
+  	<uses-permission android:name="android.permission.SEND_SMS"/>
+</manifest> 
