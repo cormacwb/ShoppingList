@@ -15,6 +15,11 @@ public class SMSListener extends BroadcastReceiver {
 
 	@Override
 	public void onReceive(Context context, Intent intent) {
+		String listRequestCode = getRequestCode(context);
+		
+		if(listRequestCode == "" || listRequestCode == "NULL")
+			return;		
+		
 		SMSHelper helper = new SMSHelper();
     	Bundle bundle = intent.getExtras();        
         SmsMessage[] msgs = null;
@@ -32,17 +37,21 @@ public class SMSListener extends BroadcastReceiver {
                 phoneNumber = msgs[i].getOriginatingAddress();
             }
             
-            if(containsListRequestCode(context, str)){
+            if(str.toUpperCase().contains(listRequestCode.toUpperCase())){
             	mDbHelper = new ShoppingListDbAdapter(context);
                 mDbHelper.open();
                 String itemsToBuy = mDbHelper.fetchItemsToBuy();
-                //Toast.makeText(context, itemsToBuy, Toast.LENGTH_SHORT).show();
                 if(phoneNumber == null)
                 	Toast.makeText(context, "Could not read phone number", Toast.LENGTH_SHORT).show();
                 helper.sendSMS(phoneNumber, itemsToBuy);
             }
         } 
 
+	}
+	
+	private String getRequestCode(Context context){
+		SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+    	return sharedPreferences.getString("prefListRequestCode", "NULL");
 	}
 	
     private boolean containsListRequestCode(Context context, String smsContents){
